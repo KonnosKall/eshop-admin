@@ -1,0 +1,49 @@
+<!--<pre>{{ products | json }}</pre>-->
+<div class="container-fluid">
+  <div class="container mt-5">
+    <div class="row">
+      <div class="col-10">
+        <h1>Products List</h1>
+      </div>
+      <div class="col-2 d-flex align-items-center">
+        <button (click)="getProducts()" class="btn btn-sm btn-primary mr-1"><i class="fa fa-refresh"></i></button>
+        <button class="btn btn-sm btn-primary"><i class="fa fa-plus"></i> Create Product</button>
+      </div>
+      <div class="col-12 text-center" *ngIf="loading">
+        <div class="spinner-border text-primary my-2" role="status">
+          <span class="sr-only">Loading...</span>
+        </div>
+      </div>
+      <div class="col-12">
+        <div class="table-responsive-sm">
+          <table class="table table-bordered table-striped">
+            <thead>
+            <tr>
+              <th scope="col">Image</th>
+              <th scope="col">Title</th>
+              <th scope="col">Mini Description</th>
+              <th scope="col">Price</th>
+              <th scope="col">Category</th>
+              <th scope="col">Tools</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let p of products">
+              <td><img [src]="p.photo"></td>
+              <td>{{p.title}}</td>
+              <td>{{p.miniDescription}}</td>
+              <td>{{p.price}}</td>
+              <td>{{p.category}}</td>
+              <td class="text-nowrap text-center">
+                <button class="btn btn-sm btn-warning mr-1"><i class="fa fa-edit"></i></button>
+                <button (click)="deleteProduct(p._id)" class="btn btn-sm btn-danger"><i class="fa fa-trash"></i></button>
+              </td>
+            </tr>
+
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
