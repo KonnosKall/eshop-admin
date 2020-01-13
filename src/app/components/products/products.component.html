@@ -7,7 +7,8 @@
       </div>
       <div class="col-2 d-flex align-items-center">
         <button (click)="getProducts()" class="btn btn-sm btn-primary mr-1"><i class="fa fa-refresh"></i></button>
-        <button class="btn btn-sm btn-primary"><i class="fa fa-plus"></i> Create Product</button>
+        <a class="btn btn-sm btn-primary" routerLink="/products/create"><i class="fa fa-plus"></i> Create Product
+        </a>
       </div>
       <div class="col-12 text-center" *ngIf="loading">
         <div class="spinner-border text-primary my-2" role="status">
@@ -35,8 +36,9 @@
               <td>{{p.price}}</td>
               <td>{{p.category}}</td>
               <td class="text-nowrap text-center">
-                <button class="btn btn-sm btn-warning mr-1"><i class="fa fa-edit"></i></button>
-                <button (click)="deleteProduct(p._id)" class="btn btn-sm btn-danger"><i class="fa fa-trash"></i></button>
+                <a [routerLink]="'/products/update/' + p._id" class="btn btn-sm btn-warning mr-1"><i class="fa fa-edit"></i></a>
+                <button (click)="deleteProduct(p._id)" class="btn btn-sm btn-danger"><i class="fa fa-trash"></i>
+                </button>
               </td>
             </tr>
 

@@ -1,0 +1,82 @@
+<div class="container">
+  <div class="row">
+    <div class="col-12 mb-3 mt-5">
+      <h1>Create new product</h1>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-8">
+      <div class="form-group">
+        <label for="product_title">Product Title</label>
+        <input [(ngModel)]="product.title" type="text" class="form-control" id="product_title"/>
+      </div>
+    </div>
+    <div class="col-4">
+      <div class="form-group">
+        <label for="product_category">Product Category</label>
+        <select [(ngModel)]="product.category" class="form-control" id="product_category">
+          <option *ngFor="let cat of categories" [value]="cat._id">{{cat.title}}</option>
+        </select>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-6">
+      <div class="form-group">
+        <label for="product_price">Product Price</label>
+        <div class="input-group">
+          <input [(ngModel)]="product.price" type="number" class="form-control" id="product_price"/>
+          <div class="input-group-append">
+            <div class="input-group-text"><i class="fa fa-euro"></i></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-6">
+      <div class="form-group">
+        <label for="product_sale">Product Sale</label>
+        <div class="input-group">
+          <input [(ngModel)]="product.sale" type="number" class="form-control" id="product_sale"/>
+          <div class="input-group-append">
+            <div class="input-group-text"><i class="fa fa-euro"></i></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-6">
+      <div class="form-group">
+        <label for="product_mini_description">Product Mini Description</label>
+        <textarea [(ngModel)]="product.miniDescription" rows="3" class="form-control"
+                  id="product_mini_description"></textarea>
+      </div>
+    </div>
+    <div class="col-6">
+      <div class="form-group">
+        <label for="product_photo">Product Photo</label>
+        <input [(ngModel)]="product.photo" type="url" class="form-control" id="product_photo"/>
+      </div>
+
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12">
+      <div class="form-group">
+        <label for="product_description">Product Description</label>
+        <textarea [(ngModel)]="product.description" rows="8" class="form-control" id="product_description"></textarea>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-4 offset-4 mt-2 mb-5">
+      <button (click)="saveProduct()" class="btn btn-success btn-block">Save</button>
+    </div>
+  </div>
+  <!--  <div class="row">-->
+  <!--    <div class="col-12">-->
+  <!--      <pre>{{ product | json }}</pre>-->
+  <!--    </div>-->
+  <!--  </div>-->
+</div>

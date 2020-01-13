@@ -8,3 +8,4 @@ export interface IProduct {
   photo: string;
   category: string;
 }
+
