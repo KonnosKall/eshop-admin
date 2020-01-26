@@ -14,6 +14,7 @@ import {ProductCreateComponent} from './components/product-create/product-create
 import {ProductUpdateComponent} from './components/product-update/product-update.component';
 import {CategoriesComponent} from './components/categories/categories.component';
 import { EditorModule } from '@tinymce/tinymce-angular';
+import { ClientsComponent } from './components/clients/clients.component';
 
 const routes = [
   {
@@ -56,7 +57,8 @@ const routes = [
     ProductsComponent,
     ProductCreateComponent,
     ProductUpdateComponent,
-    CategoriesComponent
+    CategoriesComponent,
+    ClientsComponent
   ],
   imports: [
     BrowserModule,
