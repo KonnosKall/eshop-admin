@@ -13,38 +13,51 @@ import {HttpClientModule} from '@angular/common/http';
 import {ProductCreateComponent} from './components/product-create/product-create.component';
 import {ProductUpdateComponent} from './components/product-update/product-update.component';
 import {CategoriesComponent} from './components/categories/categories.component';
-import { EditorModule } from '@tinymce/tinymce-angular';
+import {EditorModule} from '@tinymce/tinymce-angular';
+import {LoginComponent} from './components/login/login.component';
+import { AdminLayoutComponent } from './components/admin-layout/admin-layout.component';
 
 const routes = [
   {
     path: '',
-    component: DashboardComponent
-  },
-  {
-    path: 'products',
+    component: AdminLayoutComponent,
     children: [
       {
         path: '',
-        component: ProductsComponent
+        component: DashboardComponent
       },
       {
-        path: 'create',
-        component: ProductCreateComponent
+        path: 'products',
+        children: [
+          {
+            path: '',
+            component: ProductsComponent
+          },
+          {
+            path: 'create',
+            component: ProductCreateComponent
+          },
+          {
+            path: 'update/:productId',
+            component: ProductUpdateComponent
+          }
+        ]
       },
       {
-        path: 'update/:productId',
-        component: ProductUpdateComponent
-      }
+        path: 'categories',
+        children: [
+          {
+            path: '',
+            component: CategoriesComponent
+          }
+        ]
+      },
     ]
   },
+
   {
-    path: 'categories',
-    children: [
-      {
-        path: '',
-        component: CategoriesComponent
-      }
-    ]
+    path: 'login',
+    component: LoginComponent
   }
 ];
 
@@ -56,7 +69,9 @@ const routes = [
     ProductsComponent,
     ProductCreateComponent,
     ProductUpdateComponent,
-    CategoriesComponent
+    CategoriesComponent,
+    LoginComponent,
+    AdminLayoutComponent
   ],
   imports: [
     BrowserModule,
