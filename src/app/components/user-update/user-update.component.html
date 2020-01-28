@@ -1,0 +1,50 @@
+<div class="container">
+  <div class="row">
+    <div class="col-12">
+      <h1>Update user</h1>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-6">
+      <div class="form-group">
+        <label for="firstName">First Name</label>
+        <input [(ngModel)]="user.firstName" type="text" class="form-control" id="firstName"/>
+      </div>
+    </div>
+    <div class="col-6">
+      <div class="form-group">
+        <label for="lastName">Last Name</label>
+        <div class="input-group">
+          <input [(ngModel)]="user.lastName" class="form-control" type="text" id="lastName"/>
+        </div>
+      </div>
+    </div>
+    <div class="col-6">
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input [(ngModel)]="user.email" type="text" class="form-control" id="email"/>
+      </div>
+    </div>
+    <div class="col-6">
+      <div class="form-group">
+        <label for="password">Password</label>
+        <div class="input-group">
+          <input [(ngModel)]="user.password" class="form-control" type="text" id="password"/>
+        </div>
+      </div>
+    </div>
+    <div class="col-6">
+      <div class="form-group">
+        <label for="role">Role</label>
+        <div class="input-group">
+          <input [(ngModel)]="user.role" class="form-control" type="text" id="role"/>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-4 offset-4 mt-2 mb-5">
+      <button (click)="saveUser()" class="btn btn-success btn-block">Save</button>
+    </div>
+  </div>
+</div>

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { environment } from "src/environments/environment"
+import { environment } from 'src/environments/environment';
 import { ICategory } from 'src/app/interfaces/ICategory';
 
 @Component({
@@ -9,7 +9,7 @@ import { ICategory } from 'src/app/interfaces/ICategory';
   styleUrls: ['./categories.component.scss']
 })
 export class CategoriesComponent implements OnInit {
-
+  public loading: boolean = false;
   public categories: ICategory[] = [];
 
   constructor(
@@ -23,10 +23,18 @@ export class CategoriesComponent implements OnInit {
   }
 
   public getCategories() {
-    this.http.get<ICategory[]>(environment.apiUrl + "/categories")
+    this.loading = true;
+    this.http.get<ICategory[]>(environment.apiUrl + '/categories')
     .subscribe(response => {
       this.categories = response;
+      this.loading = false;
     });
+  }
+  public deleteCategory(id) {
+    this.http.delete(environment.apiUrl + '/categories/' + id)
+      .subscribe(_ => {
+        this.getCategories();
+      });
   }
 
 }

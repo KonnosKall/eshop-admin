@@ -16,6 +16,11 @@ import {CategoriesComponent} from './components/categories/categories.component'
 import {EditorModule} from '@tinymce/tinymce-angular';
 import {LoginComponent} from './components/login/login.component';
 import { AdminLayoutComponent } from './components/admin-layout/admin-layout.component';
+import { CategoryUpdateComponent } from './components/category-update/category-update.component';
+import { CategoryCreateComponent } from './components/category-create/category-create.component';
+import { UsersComponent } from './components/users/users.component';
+import { UserCreateComponent } from './components/user-create/user-create.component';
+import { UserUpdateComponent } from './components/user-update/user-update.component';
 
 const routes = [
   {
@@ -25,6 +30,23 @@ const routes = [
       {
         path: '',
         component: DashboardComponent
+      },
+      {
+        path: 'users',
+        children: [
+          {
+            path: '',
+            component: UsersComponent
+          },
+          {
+            path: 'create',
+            component: UserCreateComponent
+          },
+          {
+            path: 'update/:userId',
+            component: UserUpdateComponent
+          }
+        ]
       },
       {
         path: 'products',
@@ -49,6 +71,14 @@ const routes = [
           {
             path: '',
             component: CategoriesComponent
+          },
+          {
+            path: 'create',
+            component: CategoryCreateComponent
+          },
+          {
+            path: 'update/:categoryId',
+            component: CategoryUpdateComponent
           }
         ]
       },
@@ -71,7 +101,12 @@ const routes = [
     ProductUpdateComponent,
     CategoriesComponent,
     LoginComponent,
-    AdminLayoutComponent
+    AdminLayoutComponent,
+    CategoryUpdateComponent,
+    CategoryCreateComponent,
+    UsersComponent,
+    UserCreateComponent,
+    UserUpdateComponent
   ],
   imports: [
     BrowserModule,

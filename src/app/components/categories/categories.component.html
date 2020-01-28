@@ -1,9 +1,22 @@
 <div class="container">
-    <div class="row">
-        <div class="col-12">
-            <h1>Categories</h1>
-        </div>
+  <div class="row my-3">
+    <div class="col-8">
+      <h1>Categories List</h1>
     </div>
+    <div class="col-4 text-right">
+      <button class="btn btn-info" (click)="getCategories()">
+        <i class="fa fa-refresh"></i>
+      </button>
+      <a class="btn btn-primary" routerLink="/categories/create">
+        <i class="fa fa-plus"></i> Create Category
+      </a>
+    </div>
+  </div>
+  <div class="row" *ngIf="loading">
+    <div class="col text-center">
+      <div class="spinner-border" role="status"></div>
+    </div>
+  </div>
     <div class="row">
         <div class="col-12">
             <table class="table table-striped table-bordered">
@@ -16,7 +29,14 @@
                 <tbody>
                     <tr *ngFor="let cat of categories">
                         <td>{{ cat.title }}</td>
-                        <td></td>
+                      <td class="text-nowrap">
+                        <a [routerLink]="'/categories/update/' + cat._id" class="btn btn-sm btn-warning mr-1">
+                          <i class="fa fa-pencil"></i>
+                        </a>
+                        <button (click)="deleteCategory(cat._id)" class="btn btn-sm btn-danger">
+                          <i class="fa fa-remove"></i>
+                        </button>
+                      </td>
                     </tr>
                 </tbody>
             </table>

@@ -1,0 +1,53 @@
+<div class="container">
+  <div class="row my-3">
+    <div class="col-8">
+      <h1>Users List</h1>
+    </div>
+    <div class="col-4 text-right">
+      <button class="btn btn-info" (click)="getUsers()">
+        <i class="fa fa-refresh"></i>
+      </button>
+      <a class="btn btn-primary" routerLink="/users/create">
+        <i class="fa fa-plus"></i> Create User
+      </a>
+    </div>
+  </div>
+  <div class="row" *ngIf="loading">
+    <div class="col text-center">
+      <div class="spinner-border" role="status"></div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12">
+      <div class="table-responsive">
+        <table class="table table-bordered table-striped">
+          <thead>
+          <tr>
+            <th scope="col">FirstName</th>
+            <th scope="col">Last Name</th>
+            <th scope="col">Email</th>
+            <th scope="col">Role</th>
+            <th scope="col">Tools</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let u of users">
+            <td>{{ u.firstName}}</td>
+            <td>{{ u.lastName }}</td>
+            <td>{{ u.email }}</td>
+            <td>{{ u.role }}</td>
+            <td class="text-nowrap">
+              <a [routerLink]="'/users/update/' + u._id" class="btn btn-sm btn-warning mr-1">
+                <i class="fa fa-pencil"></i>
+              </a>
+              <button (click)="deleteUser(u._id)" class="btn btn-sm btn-danger">
+                <i class="fa fa-remove"></i>
+              </button>
+            </td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
