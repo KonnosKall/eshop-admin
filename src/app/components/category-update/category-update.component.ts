@@ -4,6 +4,8 @@ import {ICategory} from "../../interfaces/ICategory";
 import {HttpClient} from "@angular/common/http";
 import {ActivatedRoute, Router} from "@angular/router";
 import {environment} from "../../../environments/environment";
+import { IResponse } from 'src/app/interfaces/IResponse';
+import { LocalStorageService } from 'ngx-webstorage';
 
 @Component({
   selector: 'app-category-update',
@@ -17,7 +19,8 @@ export class CategoryUpdateComponent implements OnInit {
   constructor(
     private http: HttpClient,
     private router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private ls: LocalStorageService
   ) { }
 
   ngOnInit() {
@@ -27,9 +30,9 @@ export class CategoryUpdateComponent implements OnInit {
   }
 
   public initCategory(id: string) {
-    this.http.get<ICategory>(environment.apiUrl + '/categories/' + id)
+    this.http.get<IResponse>(environment.apiUrl + '/categories/' + id)
       .subscribe(response => {
-        this.category = response;
+        this.category = response.category;
       });
   }
 

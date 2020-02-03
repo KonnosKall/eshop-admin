@@ -19,6 +19,7 @@
           <a class="nav-link" routerLink="/users">Users</a>
         </li>
       </ul>
-
+      <span class="text-white">Hello {{user?.firstName}} !</span>
+      <button class="btn btn-primary"  (click)="logout()">Logout</button>
     </div>
   </nav>

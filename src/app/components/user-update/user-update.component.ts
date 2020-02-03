@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import {IUser} from "../../interfaces/IUser";
-import {HttpClient} from "@angular/common/http";
-import {ActivatedRoute, Router} from "@angular/router";
-import {environment} from "../../../environments/environment";
+import { IUser } from "../../interfaces/IUser";
+import { HttpClient } from "@angular/common/http";
+import { ActivatedRoute, Router } from "@angular/router";
+import { environment } from "../../../environments/environment";
+import { IResponse } from 'src/app/interfaces/IResponse';
+import { LocalStorageService } from 'ngx-webstorage';
 
 @Component({
   selector: 'app-user-update',
@@ -16,7 +18,8 @@ export class UserUpdateComponent implements OnInit {
   constructor(
     private http: HttpClient,
     private router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private ls: LocalStorageService
   ) { }
 
   ngOnInit() {
@@ -26,9 +29,9 @@ export class UserUpdateComponent implements OnInit {
   }
 
   public initUser(id: string) {
-    this.http.get<IUser>(environment.apiUrl + '/users/' + id)
+    this.http.get<IResponse>(environment.apiUrl + '/users/' + id)
       .subscribe(response => {
-        this.user = response;
+        this.user = response.user;
       });
   }
 

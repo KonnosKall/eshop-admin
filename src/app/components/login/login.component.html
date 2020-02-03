@@ -4,13 +4,21 @@
       <div class="box">
         <div class="form-group">
           <label for="email"> Email: </label>
-          <input type="email" class="form-control" id="email"/>
+          <input type="email" [(ngModel)]='loginData.email' class="form-control" id="email"/>
         </div>
         <div class="form-group">
           <label for="email"> Password: </label>
-          <input type="password" class="form-control" id="password"/>
+          <input type="password" [(ngModel)]='loginData.password' class="form-control" id="password"/>
         </div>
-        <button class="btn btn-success btn-block mt-4">Login</button>
+        <button (click)='login()' class="btn btn-success btn-block mt-4">Login</button>
+      </div>
+      <div *ngIf='errorMessage' class="alert alert-danger">
+        {{errorMessage}}
+      </div>
+      <div *ngIf='validationErrors.length' class="alert alert-warning">
+        <ul>
+          <li *ngFor='let error of validationErrors'>{{error.msg}}</li>
+        </ul>
       </div>
     </div>
   </div>

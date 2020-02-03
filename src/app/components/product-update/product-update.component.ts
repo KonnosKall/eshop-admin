@@ -4,6 +4,8 @@ import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { Router, ActivatedRoute } from '@angular/router';
 import { ICategory } from 'src/app/interfaces/ICategory';
+import { IResponse } from 'src/app/interfaces/IResponse';
+import { LocalStorageService } from 'ngx-webstorage';
 
 @Component({
   selector: 'app-product-update',
@@ -18,20 +20,23 @@ export class ProductUpdateComponent implements OnInit {
   constructor(
     private http: HttpClient,
     private router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private ls: LocalStorageService
   ) { }
 
   ngOnInit() {
     this.getCategories();
     this.route.params.subscribe(params => {
       this.initProduct(params.productId);
+     
     });
   }
 
   public initProduct(id: string) {
-    this.http.get<IProduct>(environment.apiUrl + '/products/' + id)
+    this.http.get<IResponse>(environment.apiUrl + '/products/' + id)
     .subscribe(response => {
-      this.product = response;
+      this.product = response.product;
+      // console.log(this.product);
     });
   }
 
@@ -43,9 +48,9 @@ export class ProductUpdateComponent implements OnInit {
   }
 
   public getCategories() {
-    this.http.get<ICategory[]>(environment.apiUrl + '/categories')
+    this.http.get<IResponse>(environment.apiUrl + '/categories')
     .subscribe(response => {
-      this.categories = response;
+      this.categories = response.categories;
     });
   }
 

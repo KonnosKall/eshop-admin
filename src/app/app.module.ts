@@ -9,7 +9,8 @@ import {ProductsComponent} from './components/products/products.component';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {CommonModule} from '@angular/common';
 import {FormsModule} from '@angular/forms';
-import {HttpClientModule} from '@angular/common/http';
+import {HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http';
+import {NgxWebstorageModule} from 'ngx-webstorage';
 import {ProductCreateComponent} from './components/product-create/product-create.component';
 import {ProductUpdateComponent} from './components/product-update/product-update.component';
 import {CategoriesComponent} from './components/categories/categories.component';
@@ -21,11 +22,14 @@ import { CategoryCreateComponent } from './components/category-create/category-c
 import { UsersComponent } from './components/users/users.component';
 import { UserCreateComponent } from './components/user-create/user-create.component';
 import { UserUpdateComponent } from './components/user-update/user-update.component';
+import { AuthInterceptor } from './interceptors/auth.interceptor';
+import { AuthGuard } from './guards/auth.guard';
 
 const routes = [
   {
     path: '',
     component: AdminLayoutComponent,
+    canActivate:[AuthGuard],
     children: [
       {
         path: '',
@@ -91,6 +95,7 @@ const routes = [
   }
 ];
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -115,9 +120,16 @@ const routes = [
     HttpClientModule,
     RouterModule.forRoot(routes),
     NgbModule.forRoot(),
+    NgxWebstorageModule.forRoot(),
     EditorModule
   ],
-  providers: [],
+  providers: [
+    {
+      provide:HTTP_INTERCEPTORS,
+      useClass:AuthInterceptor,
+      multi:true
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {

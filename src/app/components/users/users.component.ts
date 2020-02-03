@@ -2,7 +2,8 @@ import {Component, OnInit} from '@angular/core';
 import {IUser} from "../../interfaces/IUser";
 import {HttpClient} from "@angular/common/http";
 import {environment} from "../../../environments/environment";
-
+import { IResponse } from 'src/app/interfaces/IResponse';
+import { LocalStorageService } from 'ngx-webstorage';
 @Component({
   selector: 'app-users',
   templateUrl: './users.component.html',
@@ -14,7 +15,8 @@ export class UsersComponent implements OnInit {
   public users: IUser[] = [];
 
   constructor(
-    private http: HttpClient
+    private http: HttpClient,
+    private ls: LocalStorageService,
   ) {
   }
 
@@ -26,9 +28,9 @@ export class UsersComponent implements OnInit {
 
   public getUsers() {
     this.loading = true;
-    this.http.get<IUser[]>(environment.apiUrl + "/users")
+    this.http.get<IResponse>(environment.apiUrl + "/users")
       .subscribe(response => {
-        this.users = response;
+        this.users = response.users;
         this.loading = false;
       });
   }
