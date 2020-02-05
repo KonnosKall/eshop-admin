@@ -1,7 +1,7 @@
 import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
 import {RouterModule} from '@angular/router';
-
+import { ChartModule } from 'angular2-chartjs';
 import {AppComponent} from './app.component';
 import {HeaderComponent} from './components/header/header.component';
 import {DashboardComponent} from './components/dashboard/dashboard.component';
@@ -16,20 +16,20 @@ import {ProductUpdateComponent} from './components/product-update/product-update
 import {CategoriesComponent} from './components/categories/categories.component';
 import {EditorModule} from '@tinymce/tinymce-angular';
 import {LoginComponent} from './components/login/login.component';
-import { AdminLayoutComponent } from './components/admin-layout/admin-layout.component';
-import { CategoryUpdateComponent } from './components/category-update/category-update.component';
-import { CategoryCreateComponent } from './components/category-create/category-create.component';
-import { UsersComponent } from './components/users/users.component';
-import { UserCreateComponent } from './components/user-create/user-create.component';
-import { UserUpdateComponent } from './components/user-update/user-update.component';
-import { AuthInterceptor } from './interceptors/auth.interceptor';
-import { AuthGuard } from './guards/auth.guard';
+import {AdminLayoutComponent} from './components/admin-layout/admin-layout.component';
+import {CategoryUpdateComponent} from './components/category-update/category-update.component';
+import {CategoryCreateComponent} from './components/category-create/category-create.component';
+import {UsersComponent} from './components/users/users.component';
+import {UserCreateComponent} from './components/user-create/user-create.component';
+import {UserUpdateComponent} from './components/user-update/user-update.component';
+import {AuthInterceptor} from './interceptors/auth.interceptor';
+import {AuthGuard} from './guards/auth.guard';
 
 const routes = [
   {
     path: '',
     component: AdminLayoutComponent,
-    canActivate:[AuthGuard],
+    canActivate: [AuthGuard],
     children: [
       {
         path: '',
@@ -121,13 +121,15 @@ const routes = [
     RouterModule.forRoot(routes),
     NgbModule.forRoot(),
     NgxWebstorageModule.forRoot(),
-    EditorModule
+    EditorModule,
+    ChartModule
+
   ],
   providers: [
     {
-      provide:HTTP_INTERCEPTORS,
-      useClass:AuthInterceptor,
-      multi:true
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true
     }
   ],
   bootstrap: [AppComponent]
